@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["forwarded_port", {guest: 80, host: 10080}]
+  synced_folders:
+    - ["./", "/vagrant"]
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos6
+
+suites:
+  - name: default
+    run_list:
+      - recipe[wordpress::default]
+    attributes:
